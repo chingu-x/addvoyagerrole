@@ -1,0 +1,29 @@
+{
+  "name": "addvoyagerrole",
+  "version": "0.1.0",
+  "description": "Add the Discord Voyager role to Chingus signed up for the next Voyage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-x/addvoyagerrole.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "Discord",
+    "Airtable"
+  ],
+  "author": "Jim D. Medlock",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/chingu-x/addvoyagerrole/issues"
+  },
+  "homepage": "https://github.com/chingu-x/addvoyagerrole#readme",
+  "dependencies": {
+    "airtable": "^0.12.1",
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.3.1"
+  }
+}
