@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Add the Discord Voyager role to Chingus signed up for the next Voyage",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node index assign Voyage999",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +25,7 @@
   "homepage": "https://github.com/chingu-x/addvoyagerrole#readme",
   "dependencies": {
     "airtable": "^0.12.1",
+    "commander": "^11.0.0",
     "discord.js": "^14.11.0",
     "dotenv": "^16.3.1"
   }

@@ -21,7 +21,6 @@ const getVoyageSchedule = async (voyageName) => {
 
       const voyageStartDt = records[0].get('Start Date')
       const voyageEndDt = records[0].get('End Date')
-      const sprintSchedule = calculateSprints(voyageStartDt, voyageEndDt)
 
       resolve({
         voyageName: records[0].get('Name'),

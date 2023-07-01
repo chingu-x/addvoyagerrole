@@ -9,10 +9,11 @@ import * as dotenv from 'dotenv'
   program 
     .command('assign <voyage>')
     .description('Assign Voyager role to Discord users signed up for next Voyage')
-    .action(async (source, options, command) => {
+    .action(async (voyage, options, command) => {
       try {
+        console.log('voyage: ', voyage, ' options: ', options, ' command: ', command)
         if (command._name === 'assign') {
-          await assignVoyagerRole(voyage.toLowerCase())
+          //await assignVoyagerRole(voyage.toLowerCase())
         }
       }
       catch (err) {
