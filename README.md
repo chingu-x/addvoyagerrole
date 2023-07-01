@@ -42,11 +42,9 @@ npm i
 
 To run the app check out the information in the *_'Usage'_* section below.
 
-certmaker must be defined in the Discord server and granted administrator
-permissions. 
 ## Usage
 
-certmaker is a command line application (CLI). The basic command to run it is:
+addvoyagerrole is a command line application (CLI). The basic command to run it is:
 ```
 npm run start
     - or -
@@ -103,7 +101,7 @@ DISCORD_TOKEN=84fs55gsfg66hh533gfr309kkk53f2f
 MODE=PROD
 ```
 
-Next, run certmaker:
+Next, run addvoyagerrole:
 ```
 npm run start
 ```
