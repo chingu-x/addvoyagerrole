@@ -9,8 +9,8 @@ const getVoyagers = async (voyageName) => {
       '{Status} = "Active"' + 
     ")"
     
-    process.env.MODE.toUpperCase() === 'TEST' 
-      ? console.log(`...getVoyagers - filter: ${ filter }`) : null
+    process.env.MODE.toUpperCase() === 'TEST' && 
+      console.log(`...getVoyagers - filter: ${ filter }`)
 
     base('Voyage Signups').select({ 
       filterByFormula: filter,
