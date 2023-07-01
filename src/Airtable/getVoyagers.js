@@ -4,7 +4,13 @@ import Airtable from 'airtable'
 const getVoyagers = async (voyageName) => {
   return new Promise(async (resolve, reject) => {
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE)
-    const filter = '{Voyage} = \"' + voyageName + "\" "
+    const filter = "AND(" + 
+      '{Voyage} = \"' + voyageName + "\", " + 
+      '{Status} = "Active"' + 
+    ")"
+    
+    process.env.MODE.toUpperCase() === 'TEST' 
+      ? console.log(`...getVoyagers - filter: ${ filter }`) : null
 
     base('Voyage Signups').select({ 
       filterByFormula: filter,

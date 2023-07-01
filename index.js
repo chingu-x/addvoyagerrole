@@ -1,6 +1,6 @@
 import { Command } from 'commander'
 import * as dotenv from 'dotenv'
-//import extractDiscordUsers from './src/extractDiscordUsers.js'
+import { assignVoyagerRole } from './src/assignVoyagerRole.js'
 
 // Process a request to extract user accounts from the Chingu Discord server
 (async () => {
@@ -11,10 +11,11 @@ import * as dotenv from 'dotenv'
     .description('Assign Voyager role to Discord users signed up for next Voyage')
     .action(async (voyage, options, command) => {
       try {
-        console.log('voyage: ', voyage, ' options: ', options, ' command: ', command)
+        console.log(`index - Processing voyage: ${ voyage }`)
         if (command._name === 'assign') {
-          //await assignVoyagerRole(voyage.toLowerCase())
+          await assignVoyagerRole(voyage.toUpperCase())
         }
+        console.log(`...index - Processing ended without error`)
       }
       catch (err) {
         console.log(err)
