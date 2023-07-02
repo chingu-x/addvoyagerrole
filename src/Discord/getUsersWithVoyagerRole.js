@@ -39,8 +39,6 @@ const getUsersWithVoyagerRole = async () => {
           })
         }
         
-        process.env.MODE.toUpperCase() === 'TEST' && 
-          console.log(`...membersWithVoyagerRole: `, membersWithVoyagerRole) 
         resolve(membersWithVoyagerRole)
       })
 
