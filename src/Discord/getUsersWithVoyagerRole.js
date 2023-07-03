@@ -34,12 +34,14 @@ const getUsersWithVoyagerRole = async () => {
         // Create an array containing the members with this role
         for (const voyager of voyagers) {
           membersWithVoyagerRole.push({
-            id: voyager.user.id, 
-            name: voyager.user.username
+            voyager: voyager
           })
         }
         
-        resolve(membersWithVoyagerRole)
+        resolve({
+          role: voyagerRole,
+          members: membersWithVoyagerRole
+        })
       })
 
     }

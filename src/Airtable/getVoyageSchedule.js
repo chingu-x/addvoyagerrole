@@ -1,5 +1,4 @@
 import Airtable from 'airtable'
-import { calculateSprints } from './utils/calculateSprints.js'
 
 // Retrieve the schedule for the specified Voyage
 const getVoyageSchedule = async (voyageName) => {
@@ -13,6 +12,10 @@ const getVoyageSchedule = async (voyageName) => {
       view: 'Schedules' 
     })
     .firstPage((err, records) => {
+      if (records.length === 0) {
+        reject('Voyage schedule not found')
+      }
+
       if (err) { 
         console.error('filter: ', filter)
         console.error(err) 
@@ -26,7 +29,6 @@ const getVoyageSchedule = async (voyageName) => {
         voyageName: records[0].get('Name'),
         startDt: voyageStartDt,
         endDt: voyageEndDt,
-        sprintSchedule: sprintSchedule
       })
     })
 

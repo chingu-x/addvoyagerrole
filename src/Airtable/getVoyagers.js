@@ -27,7 +27,7 @@ const getVoyagers = async (voyageName) => {
       // not found
       for (let i = 0; i < records.length; ++i) {
         if (records.length > 0) {
-          resolve(records[i].id)
+          resolve(records)
         }
       }
       resolve(null)
