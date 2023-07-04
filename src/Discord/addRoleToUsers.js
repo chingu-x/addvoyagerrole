@@ -1,40 +1,17 @@
-import { Client, GatewayIntentBits } from 'discord.js'
+const addRoleToUsers = async (client, guild, voyageRole, voyageSignups) => {
+  console.log('...addRoleToUsers - voyageSignups: ', voyageSignups)
+  process.env.MODE.toUpperCase() === 'TEST' && 
+    console.log('...addRoleToUsers - guild: ', guild.name)
 
-const addRoleToUsers = async (voyageRole, voyageSignups) => {
-  return new Promise(async (resolve, reject) => {
-    console.log('...addRoleToUsers - voyageSignups: ', voyageSignups)
-    const client = new Client({
-        intents: [
-          GatewayIntentBits.Guilds,
-          GatewayIntentBits.GuildMembers,
-        ],
-      })
-    const login = await client.login(process.env.DISCORD_TOKEN)
+  await guild.roles.fetch() // Prime the DiscordJS cache
+  await guild.members.fetch() // Prime the DiscordJS cache
 
-    try {
-      client.on('ready', async () => {
-        // Retrieve the guild object for Chingu's Discord server
-        const guild = await client.guilds.fetch(process.env.GUILD_ID)
-        process.env.MODE.toUpperCase() === 'TEST' && 
-          console.log('...addRoleToUsers - guild: ', guild.name)
-
-        for (let voyager in voyageSignups) {
-          console.log('...voyager: ', voyager)
-          //member.roles.add(role)
-        }
-
-        resolve()
-      })
-
-    }
-    catch(err) {
-      console.log('='.repeat(30))
-      console.log('Error assigning Voyager role to users')
-      console.log(err)
-      client.destroy() // Terminate this Discord bot
-      reject(null)
-    }
-  })
+  for (let voyager in voyageSignups) {
+    console.log('...voyager: ', voyager)
+    
+    // Retrieve the Discord user object and assign the Voyager role
+    //member.roles.add(role)
+  }
 }
 
 export default addRoleToUsers
