@@ -23,7 +23,6 @@ const addRoleToUsers = async (voyageRole, voyageSignups) => {
           //member.roles.add(role)
         }
 
-        
         resolve()
       })
 

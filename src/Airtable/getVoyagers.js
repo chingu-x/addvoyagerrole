@@ -1,4 +1,5 @@
 import Airtable from 'airtable'
+import { getApplicationByDiscordName } from './getApplicationByDiscordName.js'
 
 // Retrieve Chingus who have signed up to particpate in the specified Voyage
 const getVoyagers = async (voyageName) => {
@@ -14,9 +15,10 @@ const getVoyagers = async (voyageName) => {
 
     base('Voyage Signups').select({ 
       filterByFormula: filter,
-      view: 'Most Recent Voyage Signups' 
+      view: 'Most Recent Voyage Signups',
+      fields: ['Email', 'Discord Name', 'Voyage'],
     })
-    .firstPage((err, records) => {
+    .firstPage(async (err, records) => {
       if (err) { 
         console.error('getVoyagers - filter: ', filter)
         console.error(err) 
@@ -25,9 +27,19 @@ const getVoyagers = async (voyageName) => {
 
       // If the record is found return its id. Otherwise, return null if it's
       // not found
+      let voyageSignups = []
       for (let i = 0; i < records.length; ++i) {
-        if (records.length > 0) {
-          resolve(records)
+        const discordId = await getApplicationByDiscordName(records[i].get('Discord Name'))
+  
+        if (records.length > 0) {    
+          voyageSignups.push({ 
+            airtable_id: records[i].id,
+            email: records[i].get('Email'),
+            discordName: records[i].get('Discord Name'),
+            discordId: discordId,
+            voyage: records[i].get('Voyage'),
+          })
+          resolve(voyageSignups)
         }
       }
       resolve(null)

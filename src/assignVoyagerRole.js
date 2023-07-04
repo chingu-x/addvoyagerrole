@@ -18,7 +18,7 @@ const assignVoyagerRole = async (voyageName) => {
 
   const voyageSignups = await getVoyagers(voyageName)
   process.env.MODE.toUpperCase() === 'TEST' &&
-    console.log(`...assignVoyagerRole - voyageSignups: ${ voyageSignups }`)
+    console.log(`...assignVoyagerRole - voyageSignups: `,voyageSignups)
 
   // Add the Voyager role to all Discord users signed up for the next Voyage
   await addRoleToUsers(discordUsers.role, voyageSignups)
