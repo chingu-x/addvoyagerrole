@@ -18,6 +18,10 @@ const assignVoyagerRole = async (voyageName) => {
       client.on('ready', async () => {
         // Retrieve the guild object for Chingu's Discord server
         const guild = await client.guilds.fetch(process.env.GUILD_ID)
+
+        // Prime the role & members caches
+        await guild.roles.fetch() 
+        await guild.members.fetch()
   
         // Identify which Voyage will be starting next
         const nextVoyage = await getVoyageSchedule(voyageName)
@@ -36,10 +40,13 @@ const assignVoyagerRole = async (voyageName) => {
           console.log(`...assignVoyagerRole - voyageSignups: `,voyageSignups)
 
         // Add the Voyager role to all Discord users signed up for the next Voyage
-        await addRoleToUsers(client, guild, discordUsers.role, voyageSignups)
+        await addRoleToUsers(guild, discordUsers.role, voyageSignups)
 
         // Remove the Voyager role from any Discord users who have it, but aren't
         // signed up for the next Voyage
+
+        // Terminate this Discord client
+        client.destroy() // Terminate this Discord bot
       })
     }
     catch(err) {

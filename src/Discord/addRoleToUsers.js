@@ -1,16 +1,15 @@
-const addRoleToUsers = async (client, guild, voyageRole, voyageSignups) => {
-  console.log('...addRoleToUsers - voyageSignups: ', voyageSignups)
-  process.env.MODE.toUpperCase() === 'TEST' && 
-    console.log('...addRoleToUsers - guild: ', guild.name)
-
-  await guild.roles.fetch() // Prime the DiscordJS cache
-  await guild.members.fetch() // Prime the DiscordJS cache
-
-  for (let voyager in voyageSignups) {
-    console.log('...voyager: ', voyager)
-    
-    // Retrieve the Discord user object and assign the Voyager role
-    //member.roles.add(role)
+const addRoleToUsers = async (guild, voyageRole, voyageSignups) => {
+  try {
+    for (let voyager of voyageSignups) {
+      // Retrieve the Discord user object and assign the Voyager role
+      const member = await guild.members.cache.find((member) => member.user.id === voyager.discordId)
+      await member.roles.add(voyageRole)
+    }
+  }
+  catch(err) {
+    console.log('='.repeat(30))
+    console.log('addRoleToUsers: Error assigning Voyager role to users')
+    console.log(err)
   }
 }
 
