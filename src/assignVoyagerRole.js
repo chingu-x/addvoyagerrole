@@ -44,6 +44,7 @@ const assignVoyagerRole = async (voyageName) => {
 
         // Remove the Voyager role from any Discord users who have it, but aren't
         // signed up for the next Voyage
+        //TODO: Add code to remove Voyager role from Discord users not signed up for next Voyage
 
         // Terminate this Discord client
         client.destroy() // Terminate this Discord bot
