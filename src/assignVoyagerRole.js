@@ -3,6 +3,7 @@ import { getVoyagers } from './Airtable/getVoyagers.js'
 import { getVoyageSchedule } from './Airtable/getVoyageSchedule.js'
 import addRoleToUsers from './Discord/addRoleToUsers.js'
 import getUsersWithVoyagerRole from './Discord/getUsersWithVoyagerRole.js'
+import removeRoleFromUsers from './Discord/removeRoleFromUsers.js'
 
 const assignVoyagerRole = async (voyageName) => {
   return new Promise(async (resolve, reject) => {
@@ -32,8 +33,9 @@ const assignVoyagerRole = async (voyageName) => {
         // who are signed up for the next Voyage
         const discordUsers = await getUsersWithVoyagerRole(client, guild)
         process.env.MODE.toUpperCase() === 'TEST' &&
-          console.log('...assignVoyagerRole - voyagerRole: ', discordUsers.role, 
-            ' discordUsers: ', discordUsers.members)
+          console.log('...assignVoyagerRole - voyagerRole: ', discordUsers.role) 
+        process.env.MODE.toUpperCase() === 'TEST' &&
+          console.log('...assignVoyagerRole - discordUsers.members: ', discordUsers.members)
 
         const voyageSignups = await getVoyagers(voyageName)
         process.env.MODE.toUpperCase() === 'TEST' &&
@@ -44,7 +46,7 @@ const assignVoyagerRole = async (voyageName) => {
 
         // Remove the Voyager role from any Discord users who have it, but aren't
         // signed up for the next Voyage
-        //TODO: Add code to remove Voyager role from Discord users not signed up for next Voyage
+        await removeRoleFromUsers(guild, discordUsers, voyageSignups)
 
         // Terminate this Discord client
         client.destroy() // Terminate this Discord bot

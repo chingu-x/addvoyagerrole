@@ -29,19 +29,19 @@ const getVoyagers = async (voyageName) => {
       // not found
       let voyageSignups = []
       for (let i = 0; i < records.length; ++i) {
-        const discordId = await getApplicationByDiscordName(records[i].get('Discord Name'))
-  
-        if (records.length > 0) {    
-          voyageSignups.push({ 
-            airtable_id: records[i].id,
-            email: records[i].get('Email'),
-            discordName: records[i].get('Discord Name'),
-            discordId: discordId,
-            voyage: records[i].get('Voyage'),
-          })
-          resolve(voyageSignups)
+          const discordId = await getApplicationByDiscordName(records[i].get('Discord Name'))
+    
+          if (records.length > 0) {    
+            voyageSignups.push({ 
+              airtable_id: records[i].id,
+              email: records[i].get('Email'),
+              discordName: records[i].get('Discord Name'),
+              discordId: discordId,
+              voyage: records[i].get('Voyage'),
+            })
+            resolve(voyageSignups)
+          }
         }
-      }
       resolve(null)
     })
   })
