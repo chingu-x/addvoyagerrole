@@ -3,16 +3,16 @@ const removeRoleFromUsers = async (guild, discordUsers, voyageSignups) => {
     try {
       // Identify Discord users with the Voyager role who aren't in the list of 
       // those from Airtable who have signed up for the Voyage.
+      console.log('discordUsers.members: ', discordUsers.members)
       for (let voyager of discordUsers.members) {
-        console.log('voyager: ', voyager.user)
+        console.log('voyager: ', voyager.voyager.user)
         let matchingSignup = null
         if (voyageSignups !== null) {
           matchingSignup = voyageSignups.find((signup) => signup.discordId === voyager.voyager.user.id)
         }
-          
         if (!matchingSignup) {
-          console.log('...removeRoleFromUsers - Discord user not signed up: ', voyager.voyager.user.name)
-          //(voyager.voyage.user).roles.remove(discordUsers.role)
+          console.log('...removeRoleFromUsers - Discord user not signed up: ', voyager.voyager.user.username)
+          voyager.voyager.roles.remove(discordUsers.role)
         }
       } 
       resolve()
