@@ -33,7 +33,7 @@ const assignVoyagerRole = async (voyageName) => {
         // who are signed up for the next Voyage
         const discordUsers = await getUsersWithVoyagerRole(client, guild)
         process.env.MODE.toUpperCase() === 'TEST' &&
-          console.log('...assignVoyagerRole - voyagerRole: ', discordUsers.role) 
+          console.log('...assignVoyagerRole - voyagerRole: ', discordUsers.role.name, ' id: ', discordUsers.role.id) 
         process.env.MODE.toUpperCase() === 'TEST' &&
           console.log('...assignVoyagerRole - discordUsers.members: ', discordUsers.members)
 
