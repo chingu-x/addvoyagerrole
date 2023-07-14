@@ -1,6 +1,6 @@
 import Airtable from 'airtable'
 
-// Retrieve the first Application row matching a user's Discord Name
+// Retrieve the first Application row matching a user's email address
 const getApplicationByEmail = async (email) => {
   return new Promise(async (resolve, reject) => {
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
@@ -8,8 +8,8 @@ const getApplicationByEmail = async (email) => {
 
     const filter =  
         `{Email} = "${ email }"`
-    console.log('...getApplicationByEmail - filter: ', filter)
-
+    process.env.MODE.toUpperCase() === 'TEST' &&
+      console.log('...getApplicationByEmail - filter: ', filter)
 
     base('Applications').select({ 
       filterByFormula: filter,
