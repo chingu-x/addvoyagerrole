@@ -1,6 +1,5 @@
 # addvoyagerrole Release history
 
-## Release 0.1.0 - July ??, 2021
+## Release 1.0.0 - July 14, 2023
 
 - Initial release.
-
