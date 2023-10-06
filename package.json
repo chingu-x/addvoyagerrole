@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index assign V45",
+    "start": "node index assign V46",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
