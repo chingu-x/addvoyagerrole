@@ -23,10 +23,11 @@ const getVoyagers = async (voyageName) => {
     .eachPage(async function page(records, fetchNextPage) {
       // If the record is found return its id. Otherwise, return null if it's
       // not found
+      const adminIDs = ['jdmedlock', 'hypno', 'notcori', 'travel_light']
       for (let i = 0; i < records.length; ++i) {
         const discordId = await getApplicationByEmail(records[i].get('Email').trim())
 
-        if (records.length > 0) {    
+        if (records.length > 0 && !adminIDs.includes(records[i].get('Discord Name'))) {    
           voyageSignups.push({ 
             airtable_id: records[i].id,
             email: records[i].get('Email'),
