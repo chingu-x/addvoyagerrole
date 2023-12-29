@@ -26,15 +26,19 @@ const getVoyagers = async (voyageName) => {
       const adminIDs = ['jdmedlock', 'hypno', 'notcori', 'travel_light']
       for (let i = 0; i < records.length; ++i) {
         const discordId = await getApplicationByEmail(records[i].get('Email').trim())
-
-        if (records.length > 0 && !adminIDs.includes(records[i].get('Discord Name'))) {    
-          voyageSignups.push({ 
-            airtable_id: records[i].id,
-            email: records[i].get('Email'),
-            discordName: records[i].get('Discord Name'),
-            discordId: discordId,
-            voyage: records[i].get('Voyage'),
-          })
+        
+        if (discordId === 0) {
+          console.warn(`...getVoyagers - Voyager Application email not found: ${ records[i].get('Email').trim() }`)
+        } else {
+          if (records.length > 0 && !adminIDs.includes(records[i].get('Discord Name'))) {    
+            voyageSignups.push({ 
+              airtable_id: records[i].id,
+              email: records[i].get('Email'),
+              discordName: records[i].get('Discord Name'),
+              discordId: discordId,
+              voyage: records[i].get('Voyage'),
+            })
+          }
         }
       }
 

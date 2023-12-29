@@ -34,12 +34,8 @@ const assignVoyagerRole = async (voyageName) => {
         const discordUsers = await getUsersWithVoyagerRole(client, guild)
         process.env.MODE.toUpperCase() === 'TEST' &&
           console.log('...assignVoyagerRole - voyagerRole: ', discordUsers.role.name, ' id: ', discordUsers.role.id) 
-        process.env.MODE.toUpperCase() === 'TEST' &&
-          console.log('...assignVoyagerRole - discordUsers.members: ', discordUsers.members)
 
         const voyageSignups = await getVoyagers(voyageName)
-        process.env.MODE.toUpperCase() === 'TEST' &&
-          console.log(`...assignVoyagerRole - voyageSignups: `,voyageSignups)
 
         // Add the Voyager role to all Discord users signed up for the next Voyage
         await addRoleToUsers(guild, discordUsers.role, voyageSignups)
@@ -50,6 +46,7 @@ const assignVoyagerRole = async (voyageName) => {
 
         // Terminate this Discord client
         client.destroy() // Terminate this Discord bot
+        
       })
     }
     catch(err) {
