@@ -9,7 +9,7 @@ const getVoyagers = async (voyageName) => {
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE)
     const filter = "AND(" + 
       '{Voyage} = \"' + voyageName + "\", " + 
-      '{Status} = "Active"' + 
+      '{Status} != \"Dropped\" ' +
     ")"
     
     process.env.MODE.toUpperCase() === 'TEST' && 
