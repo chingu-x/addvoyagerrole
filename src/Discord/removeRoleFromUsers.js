@@ -4,14 +4,21 @@ const removeRoleFromUsers = async (guild, discordUsers, voyageSignups) => {
       // Identify Discord users with the Voyager role who aren't in the list of 
       // those from Airtable who have signed up for the Voyage.
       for (let voyager of discordUsers.members) {
-        let matchingSignup = null
+        let keepRole = false
+        let matchingSignups = []
         if (voyageSignups !== null) { // Check for any signups for this Voyage in Airtable
-          matchingSignup = voyageSignups.find((signup) => signup.discordId === voyager.voyager.user.id)
+          matchingSignups = voyageSignups.filter((signup) => signup.discordId === voyager.voyager.user.id)
+          // Retain the Voyager role for anyone who dropped one team and moved to another.
+          // Do this by searching the voyageSignups array to see if the Voyager has
+          // multiple signups, one of which is in either `Active` or `Inactive` status.
+          keepRole = matchingSignups.find((signup) => signup.discordId === voyager.voyager.user.id && 
+            (signup.status === 'Active' || signup.status === 'Inactive'))
         }
-        if (!matchingSignup) {
-          console.log('...removeRoleFromUsers - Discord user not signed up: ', voyager.voyager.user.username)
+        if (!keepRole) {
+          console.log('...removeRoleFromUsers - Removing Voyager role from user: ', voyager.voyager.user.username)
           process.env.MODE.toUpperCase() === 'PROD' &&
             voyager.voyager.roles.remove(discordUsers.role)
+          keepRole = false
         }
       } 
       resolve()
