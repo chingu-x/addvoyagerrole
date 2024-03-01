@@ -17,8 +17,9 @@ const getVoyagers = async (voyageName) => {
 
     base('Voyage Signups').select({ 
       filterByFormula: filter,
-      view: 'Most Recent Voyage Signups',
-      fields: ['Email', 'Discord Name', 'Voyage'],
+      //view: 'Most Recent Voyage Signups',
+      view: 'Teamsort - '.concat(voyageName),
+      fields: ['Email', 'Discord Name', 'Voyage', 'Status', 'Team Name', 'Team No.'],
     })
     .eachPage(async function page(records, fetchNextPage) {
       // If the record is found return its id. Otherwise, return null if it's
@@ -34,6 +35,9 @@ const getVoyagers = async (voyageName) => {
             discordName: records[i].get('Discord Name'),
             discordId: discordId,
             voyage: records[i].get('Voyage'),
+            tier: records[i].get('Team Name'),
+            teamNo: records[i].get('Team No.'),
+            status: records[i].get('Status'),
           })
         }
       }
