@@ -13,7 +13,8 @@ const getApplicationByEmail = async (email) => {
 
     base('Applications').select({ 
       filterByFormula: filter,
-      view: 'Applications' 
+      view: 'Applications',
+      fields: ['Email', 'Discord ID'], 
     })
     .firstPage((err, records) => {
       if (err) { 
