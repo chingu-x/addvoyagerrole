@@ -1,6 +1,7 @@
 const removeRoleFromUsers = async (guild, discordUsers, voyageSignups) => {
   return new Promise(async (resolve, reject) => {
     try {
+      console.log('...Preparing to remove role from users...')
       // Identify Discord users with the Voyager role who aren't in the list of 
       // those from Airtable who have signed up for the Voyage.
       for (let voyager of discordUsers.members) {

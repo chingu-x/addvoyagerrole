@@ -10,6 +10,7 @@ const getVoyagers = async (voyageName) => {
     const filter = "AND(" + 
       '{Voyage} = \"' + voyageName + "\", " + 
       '{Status} != \"Dropped\", ' +
+      '{Status} != \"No Application\", ' +
       '{Role} != \"Voyage Guide\" ' +
     ")"
     

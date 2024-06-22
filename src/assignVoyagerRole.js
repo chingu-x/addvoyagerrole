@@ -32,15 +32,17 @@ const assignVoyagerRole = async (voyageName) => {
         // Start be retrieving all Discord users with the Voyager Role and all Chingus
         // who are signed up for the next Voyage
         const discordUsers = await getUsersWithVoyagerRole(client, guild)
+        /*
         process.env.MODE.toUpperCase() === 'TEST' &&
           console.log('...assignVoyagerRole - voyagerRole: ', discordUsers.role.name, ' id: ', discordUsers.role.id) 
         process.env.MODE.toUpperCase() === 'TEST' &&
           console.log('...assignVoyagerRole - discordUsers.members: ', discordUsers.members)
-
+        */
         const voyageSignups = await getVoyagers(voyageName)
+        /*
         process.env.MODE.toUpperCase() === 'TEST' &&
           console.log(`...assignVoyagerRole - voyageSignups: `,voyageSignups)
-
+        */
         // Add the Voyager role to all Discord users signed up for the next Voyage
         await addRoleToUsers(guild, discordUsers.role, voyageSignups)
 

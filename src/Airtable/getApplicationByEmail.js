@@ -6,8 +6,7 @@ const getApplicationByEmail = async (email) => {
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
       .base(process.env.AIRTABLE_BASE)
 
-    const filter =  
-        `{Email} = "${ email }"`
+    const filter = `{Email} = "${ email }"`
     process.env.MODE.toUpperCase() === 'TEST' &&
       console.log('...getApplicationByEmail - filter: ', filter)
 
@@ -26,6 +25,7 @@ const getApplicationByEmail = async (email) => {
       // Return the number of Applications submitted in this date range
       if (records !== null && records !== undefined) {
         const discordId = records[0].get('Discord ID')
+        console.log('......Discord ID: ', discordId)
         resolve(discordId)
       }
       resolve(0)
