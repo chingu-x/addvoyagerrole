@@ -9,7 +9,10 @@ const getVoyagers = async (voyageName) => {
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE)
     const filter = "AND(" + 
       '{Voyage} = \"' + voyageName + "\", " + 
-      '{Status} != \"Dropped\" ' +
+      '{Status} != \"Dropped\", ' +
+      '{Status} != \"No Application\", ' +
+      '{Role} != \"Voyage Guide\", ' +
+      '{Team No.} != \"\" ' +
     ")"
     
     process.env.MODE.toUpperCase() === 'TEST' && 
@@ -26,9 +29,12 @@ const getVoyagers = async (voyageName) => {
       // not found
       const adminIDs = ['jdmedlock', 'hypno', 'notcori', 'travel_light']
       for (let i = 0; i < records.length; ++i) {
+        //process.env.MODE.toUpperCase() === 'TEST' && 
+        //  console.log(`...getVoyagers - records[i]: `, records[i])
+        
         const discordId = await getApplicationByEmail(records[i].get('Email').trim())
 
-        if (records.length > 0 && !adminIDs.includes(records[i].get('Discord Name'))) {    
+        if (records.length > 0 && !adminIDs.includes(records[i].get('Discord Name'))) {
           voyageSignups.push({ 
             airtable_id: records[i].id,
             email: records[i].get('Email'),

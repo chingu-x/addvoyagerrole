@@ -6,14 +6,14 @@ const getApplicationByEmail = async (email) => {
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
       .base(process.env.AIRTABLE_BASE)
 
-    const filter =  
-        `{Email} = "${ email }"`
+    const filter = `{Email} = "${ email }"`
     process.env.MODE.toUpperCase() === 'TEST' &&
       console.log('...getApplicationByEmail - filter: ', filter)
 
     base('Applications').select({ 
       filterByFormula: filter,
-      view: 'Applications' 
+      view: 'Applications',
+      fields: ['Email', 'Discord ID'], 
     })
     .firstPage((err, records) => {
       if (err) { 

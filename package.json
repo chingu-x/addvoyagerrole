@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index assign V47",
+    "start": "node index assign V51",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/chingu-x/addvoyagerrole#readme",
   "dependencies": {
-    "airtable": "^0.12.1",
+    "airtable": "^0.12.2",
     "commander": "^11.0.0",
     "discord.js": "^14.11.0",
     "dotenv": "^16.3.1"

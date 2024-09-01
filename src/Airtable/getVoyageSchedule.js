@@ -6,12 +6,15 @@ const getVoyageSchedule = async (voyageName) => {
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE)
     const filter = "{Name} = \"" + voyageName.toUpperCase() + "\""
 
+    console.log('filter: ', filter)
+
     base('Schedules').select({ 
       fields: ['Name', 'Type', 'Start Date', 'End Date'],
       filterByFormula: filter,
-      view: 'Schedules' 
+      view: 'Voyages' 
     })
     .firstPage((err, records) => {
+      console.log('err: ', err)
       if (records.length === 0) {
         reject('Voyage schedule not found')
       }

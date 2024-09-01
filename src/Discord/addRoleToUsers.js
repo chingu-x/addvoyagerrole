@@ -1,5 +1,6 @@
 const addRoleToUsers = async (guild, voyageRole, voyageSignups) => {
   try {
+    console.log('...Preparing to add role to users...')
     if  (voyageSignups !== null) {
       for (let voyager of voyageSignups) {
         // Retrieve the Discord user object and assign the Voyager role
