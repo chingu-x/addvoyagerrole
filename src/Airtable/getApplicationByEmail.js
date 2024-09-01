@@ -25,7 +25,6 @@ const getApplicationByEmail = async (email) => {
       // Return the number of Applications submitted in this date range
       if (records !== null && records !== undefined) {
         const discordId = records[0].get('Discord ID')
-        console.log('......Discord ID: ', discordId)
         resolve(discordId)
       }
       resolve(0)
