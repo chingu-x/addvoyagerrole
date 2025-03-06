@@ -27,6 +27,7 @@ const getApplicationByEmail = async (email) => {
         const discordId = records[0].get('Discord ID')
         resolve(discordId)
       }
+      
       resolve(0)
     })
   })
