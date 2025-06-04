@@ -23,7 +23,7 @@ const assignVoyagerRole = async (voyageName) => {
         // Prime the role & members caches
         await guild.roles.fetch() 
         await guild.members.fetch()
-  
+
         // Identify which Voyage will be starting next
         const nextVoyage = await getVoyageSchedule(voyageName)
         process.env.MODE.toUpperCase() === 'TEST' &&

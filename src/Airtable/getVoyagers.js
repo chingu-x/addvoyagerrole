@@ -11,10 +11,10 @@ const getVoyagers = async (voyageName) => {
       '{Voyage} = \"' + voyageName + "\", " + 
       '{Status} != \"Dropped\", ' +
       '{Status} != \"No Application\", ' +
+      '{Status} != \"SkipVoyage", ' +
       '{Role} != \"Voyage Guide\", ' +
       '{Team No.} != \"\", ' +
       '{Commitment Form Completed} = \"Yes\" ' +
-
     ")"
     
     process.env.MODE.toUpperCase() === 'TEST' && 
@@ -34,20 +34,19 @@ const getVoyagers = async (voyageName) => {
         //process.env.MODE.toUpperCase() === 'TEST' && 
         //  console.log(`...getVoyagers - records[i]: `, records[i])
         
-        const discordId = await getApplicationByEmail(records[i].get('Email').trim())
-
-        if (records.length > 0 && !adminIDs.includes(records[i].get('Discord Name'))) {
-          voyageSignups.push({ 
-            airtable_id: records[i].id,
-            email: records[i].get('Email'),
-            discordName: records[i].get('Discord Name'),
-            discordId: discordId,
-            voyage: records[i].get('Voyage'),
-            tier: records[i].get('Team Name'),
-            teamNo: records[i].get('Team No.'),
-            status: records[i].get('Status'),
-          })
-        }
+          const discordId = await getApplicationByEmail(records[i].get('Email').trim())
+          if (records.length > 0 && !adminIDs.includes(records[i].get('Discord Name'))) {
+            voyageSignups.push({ 
+              airtable_id: records[i].id,
+              email: records[i].get('Email'),
+              discordName: records[i].get('Discord Name'),
+              discordId: discordId,
+              voyage: records[i].get('Voyage'),
+              tier: records[i].get('Team Name'),
+              teamNo: records[i].get('Team No.'),
+              status: records[i].get('Status'),
+            })
+          }
       }
 
       // To fetch the next page of records, call 'fetchNextPage'.
