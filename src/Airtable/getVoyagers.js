@@ -11,10 +11,10 @@ const getVoyagers = async (voyageName) => {
       '{Voyage} = \"' + voyageName + "\", " + 
       '{Status} != \"Dropped\", ' +
       '{Status} != \"No Application\", ' +
+      '{Status} != \"SkipVoyage", ' +
       '{Role} != \"Voyage Guide\", ' +
       '{Team No.} != \"\", ' +
       '{Commitment Form Completed} = \"Yes\" ' +
-
     ")"
     
     process.env.MODE.toUpperCase() === 'TEST' && 
