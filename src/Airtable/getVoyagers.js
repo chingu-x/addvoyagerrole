@@ -14,7 +14,7 @@ const getVoyagers = async (voyageName) => {
       '{Status} != \"SkipVoyage", ' +
       '{Role} != \"Voyage Guide\", ' +
       '{Team No.} != \"\", ' +
-      '{Commitment Form Completed} = \"Yes\" ' +
+      '{Confirmation Form Completed} = \"Yes\" ' +
     ")"
     
     process.env.MODE.toUpperCase() === 'TEST' && 
