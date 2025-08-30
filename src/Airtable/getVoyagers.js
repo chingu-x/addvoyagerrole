@@ -14,7 +14,7 @@ const getVoyagers = async (voyageName) => {
       '{Status} != \"SkipVoyage", ' +
       '{Role} != \"Voyage Guide\", ' +
       '{Team No.} != \"\", ' +
-      '{Commitment Form Completed} = \"Yes\" ' +
+      '{Confirmation Form Completed} = \"Yes\" ' +
     ")"
     
     process.env.MODE.toUpperCase() === 'TEST' && 
@@ -24,7 +24,7 @@ const getVoyagers = async (voyageName) => {
       filterByFormula: filter,
       //view: 'Most Recent Voyage Signups',
       view: 'Teamsort - '.concat(voyageName),
-      fields: ['Email', 'Discord Name', 'Voyage', 'Status', 'Team Name', 'Team No.'],
+      fields: ['Email', 'Discord Name', 'Voyage', 'Status', 'Team Name', 'Team No.', 'Confirmation Form Completed'],
     })
     .eachPage(async function page(records, fetchNextPage) {
       // If the record is found return its id. Otherwise, return null if it's
@@ -45,6 +45,7 @@ const getVoyagers = async (voyageName) => {
               tier: records[i].get('Team Name'),
               teamNo: records[i].get('Team No.'),
               status: records[i].get('Status'),
+              confirmationCompleted: records[i].get('Confirmation Form Completed'),
             })
           }
       }
