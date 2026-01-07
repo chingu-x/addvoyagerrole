@@ -12,7 +12,9 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-# addvoyagerrole
+# addvoyagerrole (RETIRED)
+
+This app has been replaced by the N8N workflow - "Voyage - Assign Voyager Role".
 
 addvoyagerrole automates the process of assigning the `Voyager` Discord role to
 Chingus signed up for the next Voyage. 
