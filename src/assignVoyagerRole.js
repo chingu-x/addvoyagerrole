@@ -25,7 +25,8 @@ const assignVoyagerRole = async (voyageName) => {
         await guild.members.fetch()
 
         // Identify which Voyage will be starting next
-        const nextVoyage = await getVoyageSchedule(voyageName)
+        //const nextVoyage = await getVoyageSchedule(voyageName)
+        const nextVoyage = await getVoyageSchedule('V57')
         process.env.MODE.toUpperCase() === 'TEST' &&
           console.log(`...assignVoyagerRole - nextVoyage: `, nextVoyage)
 
@@ -38,7 +39,8 @@ const assignVoyagerRole = async (voyageName) => {
         process.env.MODE.toUpperCase() === 'TEST' &&
           console.log('...assignVoyagerRole - discordUsers.members: ', discordUsers.members)
         */
-        const voyageSignups = await getVoyagers(voyageName)
+        //const voyageSignups = await getVoyagers(voyageName)
+        const voyageSignups = await getVoyagers(nextVoyage.voyageName)
         /*
         process.env.MODE.toUpperCase() === 'TEST' &&
           console.log(`...assignVoyagerRole - voyageSignups: `,voyageSignups)

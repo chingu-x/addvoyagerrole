@@ -5,12 +5,12 @@ const addRoleToUsers = async (guild, voyageRole, voyageSignups) => {
       for (let voyager of voyageSignups) {
         // Retrieve the Discord user object and assign the Voyager role
         const member = await guild.members.cache.find((member) => member.user.id === voyager.discordId)
-        console.log('...addRoleToUsers - Discord user signed up: ', voyager.voyage, ' name: ', voyager.discordName, ' id: ', voyager.discordId)
-        if (member) {
+        console.log('...addRoleToUsers - Discord user signed up: ', voyager.voyage, ' name: ', voyager.discordName, ' id: ', voyager.discordId, ' confirmationCompleted: ', voyager.confirmationCompleted)
+        if (member && voyager.confirmationCompleted === 'Yes') {
           process.env.MODE.toUpperCase() === 'PROD' &&
             await member.roles.add(voyageRole)
         } else {
-          console.log('...addRoleToUsers - Discord user not found: ', voyager.voyage, ' name: ', voyager.discordName, ' id: ', voyager.discordId)
+          console.log('...addRoleToUsers - Discord user not found: ', voyager.voyage, ' name: ', voyager.discordName, ' id: ', voyager.discordId, ' confirmationCompleted: ', voyager.confirmationCompleted)
         }
       }
     }
